@@ -2,17 +2,46 @@ import java.util.Scanner;
 public class Calculadora {
     public static void main(String[] args){
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Calculadora CLI, digite algo o que você deseja calcular: ");
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        while (true) {
-            String entrada = scanner.nextLine();
+            System.out.print("Digite o primeiro número: ");
+            int num1 = scanner.nextInt();
+            scanner.nextLine();
 
-            if (entrada.equalsIgnoreCase("sair")) {
-                System.out.println("Até logo!");
-                break;
-            } 
+            System.out.print("Digite a operação: ");
+            String operador = scanner.nextLine();
+
+            System.out.print("Digite o segundo número: ");
+            int num2 = scanner.nextInt();
+
+            int resultado = 0;
+            boolean operadorValido = true;
+
+            switch (operador) {
+                case "+":
+                    resultado = num1 + num2;
+                    break;
+                case "-":
+                    resultado = num1 - num2;
+                    break;
+                case "/":
+                    resultado = num1 / num2;
+                    break;
+                case "*":
+                    resultado = num1 * num2;
+                    break;
+                default:
+                    operadorValido = false;
+                    System.out.println("Operador inválido");
+                    break;
+            }
+
+            if (operadorValido) {
+                System.out.println("O resultado final da operação é: " + resultado);
+            }
         }
-
-    }
+    } 
 }
+
+    
+
